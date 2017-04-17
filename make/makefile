@@ -1,49 +1,16 @@
 
-CC=gcc
-CFLAGS = -I.
+include makefile_defines.mk
 
-CCC=g++
-CCFLAGS = -std=c++11 -I.
+include makefile_rules.mk
 
-BUILD_DIR=./build
-LIB_DIR=./lib
-BIN_DIR=./bin
+main: install
+all:main
 
-_BIN=hello
-BIN=$(patsubst %,$(BUILD_DIR)/%,$(_OBJS))
 #
-# build from SRCS
+# not 100% kosher - does not check deps
 #
-SOURCES	:=$(wildcard *.cc)
-OBJECTS := $(patsubst %.cc,$(BUILD_DIR)/%.o, $(SOURCES))
-
-.PHONY: clean install debug
-
-
-# _OBJS=hello.o
-# OBJS=$(patsubst %,$(BUILD_DIR)/%,$(_OBJS))
-
-
-$(BUILD_DIR)/%.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
-
-$(BUILD_DIR)/%.o: %.cc
-	$(CCC) -c -o $@ $< $(CCFLAGS)
-
-$(BUILD_DIR)/hello: $(OBJECTS)
-	$(CC) -o$@ $^  $(CCFLAGS) -lstdc++
-
-
-clean:
-	rm -f ./build/*
-	rm -f ./bin/*
-	rm -f ./lib/*.so
-	rm -f core
-
 install:
-	cp -p ./build/hello ./bin
+	cp -p *.mk $(WORKSPACE_DIR)/include
 
-debug:
-	@echo $(OBJECTS)
-	@echo $(SOURCES)
+
 
