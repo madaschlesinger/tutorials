@@ -2,7 +2,9 @@
 CC=gcc
 CFLAGS = -I.
 
-CCFLAGS = -std=c++11 -I. -g3
+CCFLAGS = -std=c++11 -I. -g3  -fPIC 
+LDFLAGS = -shared
+
 
 BUILD_DIR=./build
 LIB_DIR=./lib
