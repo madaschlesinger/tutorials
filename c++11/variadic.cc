@@ -9,6 +9,7 @@
 using std::function ; 
 using namespace std ; 
 
+#if 0
 template< typename Stream, typename... Columns>
 class Printer
 {  
@@ -58,6 +59,8 @@ public:
   }
 
 };
+
+#endif
 
 /***************************************************
  *
@@ -114,7 +117,8 @@ static void _cherry_pick()
 
 static void _tuple_size() 
 {
- 
+  // foobar
+  int a;
   std::cerr << "_tuple_size() : " << std::endl ; 
   std::cerr << TupleSize<>::value << endl;
   std::cerr << TupleSize<int>::value << endl;
@@ -125,7 +129,7 @@ static void _tuple_size()
 
 }
 
-
+#if 0
 static void _printer()
 {
   std::cerr << "_printer() : " << std::endl ; 
@@ -145,10 +149,12 @@ static void _printer()
 
 }
 
+#endif
+
 
 int main() 
 {
-  _printer()  ; 
+  //_printer()  ;
   _tuple_size()  ; 
   _cherry_pick()  ; 
   return 0 ; 
