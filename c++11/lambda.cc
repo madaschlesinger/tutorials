@@ -3,6 +3,7 @@
 #include <vector>
 #include <typeinfo>
 #include <functional>
+#include <fibonacci.h>
 
 using std::function ; 
 
@@ -79,31 +80,18 @@ static void _stored()
   return;
 }
 
-static void _fibonaci()
+static void _fibonacci()
 {
-  std::cerr << "_fibonaci() : " ; 
-
-  // recursive trick for lambdas - wrap in std::function
-  function<int(int)> fibonaci = [&](int n) -> int
-    {
-      if(n<1)
-	return -1 ; 
-      else if (n==1 || n==2 )
-	  return 1 ;
-      else
-	  return fibonaci( n-1 )+ fibonaci( n-2 ) ; 
-    };
-
-  std::cerr << "_fibonaci() : " ; for(auto i=1; i < 10; ++i ) std::cerr << fibonaci(i) << " ";  
-  std::cerr << std::endl;
+  // call library fn
+  fibonacci();
+  
 }
-
 
 int main() 
 {
   _simple() ; 
   _stored(); 
-  _fibonaci() ; 
+  _fibonacci() ; 
   return 0 ; 
 }
 
