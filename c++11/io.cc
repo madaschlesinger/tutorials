@@ -1,4 +1,3 @@
-// obtaining file size
 #include <iostream>
 #include <fstream>
 // Shared memory
@@ -24,6 +23,8 @@
 #define FILEPATH "/tmp/mmapped.bin"
 #define NUMINTS  (1000)
 #define FILESIZE (NUMINTS * sizeof(int))
+#include <util/backing_store.h>
+
 
 
 using namespace std;
@@ -31,7 +32,13 @@ using namespace std;
 int _file_size() 
 {
   streampos begin,end;
-  ifstream myfile ("example.bin", ios::binary);
+
+  using util::backing_store::store;
+  using util::backing_store::traits;
+
+
+
+  ifstream myfile ( traits::default_fname().c_str(), ios::binary);
   begin = myfile.tellg();
   myfile.seekg (0, ios::end);
   end = myfile.tellg();
@@ -62,85 +69,23 @@ int _binary_read_contents()
 
   ifstream file ("example.bin", ios::in|ios::binary|ios::ate);
   if (file.is_open())
-    {
+  {
       size = file.tellg();
       memblock = new char [size];
       file.seekg (0, ios::beg);
       file.read (memblock, size);
       file.close();
-
+      
       cout << "the entire file content is in memory";
-
+      
       delete[] memblock;
-    }
+  }
   else cout << "Unable to open file";
   return 0;
 }
 
-#include <cstdint>
 
-namespace util { namespace allocator {
-
-  enum class backing_store_type : std::int8_t { SHARED_MEMORY = 1, FILE_SYSTEM =2, MEMORY = 3  };
-
-  int bac;
-
-  // error handling...... throw/compile - template arg....??
-template<typename T> 
-class backing_store
-{
-private:
-
-  T       mode_;
-  int     fd_;
-  int     flags_ = O_RDWR | O_CREAT | O_TRUNC;
-  string  fname_;
-  size_t  sz_; // TODO - need to think about block size -growth, pages/hugepages
-  mode_t  perms_ = (mode_t) 0600;
-
-
-public:
-  
-  backing_store( string fname, size_t sz, int flags= 0 , int perms = 0600 ) 
-    : fname_( fname ), sz_( sz ), flags_( flags ) 
-  {
-    perms_ = (mode_t) perms ; 
-  }
-
-  mode_t default_flags() { return  O_RDWR | O_CREAT | O_TRUNC; }
-
-  int open()
-  {
-    fd_ = open( fname_.c_str(), flags_, perms_ );
- 
-    if( fd_ == -1 )
-    {
-      perror("Error opening file for writing");
-      exit(EXIT_FAILURE);
-    }
-
-    if( sz_ ) 
-    {
-      
-      if(ftruncate( fd_ , sz_ ) != 0)
-      {
-	cout << " - ftruncate has failed with error code : " << errno << endl;
-	exit errno;
-      }
-    }
-    
-    return fd_; // ??? keeping the open symantic - but breaks encapsulation
-  }
-
-
-};
-
-}; // ns allocator
-
-}; // ns util
-
-
-int _binary_create_backingstore() 
+int _binary_create_backingstore_orig() 
 {
   int i;
   int fd;
@@ -153,7 +98,7 @@ int _binary_create_backingstore()
    *
    * Note: "O_WRONLY" mode is not sufficient when mmaping.
    */
-  fd = open(FILEPATH, O_RDWR | O_CREAT | O_TRUNC, (mode_t)0600);
+  fd = open( "/tmp/backing_store.bin", O_RDWR | O_CREAT | O_TRUNC, (mode_t)0600);
   if (fd == -1)
     {
       perror("Error opening file for writing");
@@ -221,48 +166,183 @@ int _binary_create_backingstore()
 
 
 
-
-int _binary_read_backingstore()
+int _binary_create_backingstore_non_T() 
 {
-  int i;
-  int fd;
-  int *map;  /* mmapped array of int's */
+    
+    using util::backing_store::store;
+    using util::backing_store::traits;
+    using util::backing_store::fs_traits_ro;
+    using util::backing_store::fs_traits;
 
-  fd = open(FILEPATH, O_RDONLY);
-  if (fd == -1)
+
+    // traits t;
+    store< fs_traits<FILESIZE>> bs; // ( FILEPATH,FILESIZE );
+
+    int *map = (int *) bs.allocate() ; 
+    
+    if (map == nullptr)
     {
-      perror("Error opening file for reading");
-      exit(EXIT_FAILURE);
+        perror("Error mmapping the file");
+        exit(EXIT_FAILURE);
+    }
+    
+    /* Now write int's to the file as if it were memory (an array of ints).
+     */
+    for (auto i = 0; i < NUMINTS; ++i)
+    {
+        map[i] = 2 * i ;
+    }
+    
+    // clean up now occurs via dtr of the backing_store object
+    return 0;
+} 
+
+
+
+int _binary_read_backingstore_orig()
+{
+    int i;
+    int fd;
+    int *map;  /* mmapped array of int's */
+    
+    fd = open( "/tmp/backing_store.bin", O_RDONLY);     // FILEPATH, O_RDONLY);
+    if (fd == -1)
+    {
+        perror("Error opening file for reading");
+        exit(EXIT_FAILURE);
     }
 
-  map = (int *) mmap(0, FILESIZE, PROT_READ, MAP_SHARED, fd, 0);
-  if (map == MAP_FAILED) {
+    size_t abc = FILESIZE;
+    map = (int *) mmap(0, abc, PROT_READ, MAP_SHARED, fd, 0);
+    if (map == MAP_FAILED) {
+        close(fd);
+        perror("Error mmapping the file");
+        exit(EXIT_FAILURE);
+    }
+    
+    /* Read the file int-by-int from the mmap
+     */
+    for (i = 0; i <NUMINTS; ++i) {
+        printf("%d: %d\n", i, map[i]);
+    }
+    
+    if (munmap(map, FILESIZE) == -1) {
+        perror("Error un-mmapping the file");
+    }
     close(fd);
-    perror("Error mmapping the file");
-    exit(EXIT_FAILURE);
-  }
-
-  /* Read the file int-by-int from the mmap
-   */
-  for (i = 1; i <=NUMINTS; ++i) {
-    printf("%d: %d\n", i, map[i]);
-  }
-
-  if (munmap(map, FILESIZE) == -1) {
-    perror("Error un-mmapping the file");
-  }
-  close(fd);
-  return 0;
+    return 0;
 }
 
 
+
+
+int _binary_read_backingstore_non_T()
+{
+    using util::backing_store::store;
+    using util::backing_store::fs_traits_ro;
+    
+
+    store< fs_traits_ro<FILESIZE>> bs; // ( FILEPATH,FILESIZE );
+
+    int *map = (int *) bs.allocate() ; 
+    
+    if (map == nullptr )
+    {
+        perror("Error mmapping the file");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Read the file int-by-int from the mmap
+     */
+    for (auto i = 1; i <=NUMINTS; ++i) if( i == 1 || i % 50 == 0 )
+                                           printf("%d: %d\n", i, map[i]);
+
+    
+    return 0;
+}
+
+template<typename T>
+int _binary_read_backingstore( const char *tag )
+{
+    using util::backing_store::store;
+    using util::backing_store::shm_traits_ro;
+    
+
+    store<T> bs;
+
+    int *map = (int *) bs.allocate() ; 
+    
+    if (map == nullptr )
+    {
+        perror("Error mmapping the file");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Read the file int-by-int from the mmap
+     */
+    for (auto i = 0; i <NUMINTS; ++i) if( i == 0 || i % 50 == 0 || i == NUMINTS -1 )
+                                          printf("%s %d: %d\n", tag, i, map[i]);
+
+    
+    return 0;
+}
+
+template<typename T>
+int _binary_create_backingstore() 
+{
+    
+    using util::backing_store::store;
+
+    store<T> bs; 
+
+    int *map = (int *) bs.allocate() ; 
+    
+    if (map == nullptr)
+    {
+        perror("Error mmapping the file");
+        exit(EXIT_FAILURE);
+    }
+    
+    /* Now write int's to the file as if it were memory (an array of ints).
+     */
+    for (auto i = 0; i < NUMINTS; ++i)
+    {
+        map[i] = 2 * i  ;
+    }
+    
+    // clean up now occurs via dtr of the backing_store object
+    return 0;
+} 
+
 int main () 
 {
-  // _binary_create_backingstore() ;
-  _binary_read_backingstore() ;
-  _txt() ;
-  _file_size();
-  return 0;
+    // cerr << "GIT_VERSION: " << GIT_VERSION << endl;
+    //_binary_create_backingstore() ;
+    // _binary_read_backingstore() ;
+
+
+     using util::backing_store::shm_traits;
+     using util::backing_store::shm_traits_ro;
+
+     using util::backing_store::fs_traits;
+     using util::backing_store::fs_traits_ro;
+     
+     _binary_create_backingstore<fs_traits<FILESIZE>>() ;
+     _binary_read_backingstore<fs_traits_ro<FILESIZE>>( "fs" ) ;
+
+
+     _binary_create_backingstore<shm_traits<FILESIZE>>() ;
+     _binary_read_backingstore<shm_traits_ro>( "sm" ) ;
+
+
+     shm_traits<4> smt ; 
+     assert( smt.truncate == true );
+
+     fs_traits_ro<4> fsro ; 
+     assert( fsro.truncate == false );
+    //_txt() ;
+    _file_size();
+    return 0;
 }
 
 
