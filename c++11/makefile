@@ -27,6 +27,19 @@ BIN4_LIBS=rt
 
 
 
+BIN4_SOURCES=probe.cc
+BIN4=probe
+
+BIN5_SOURCES=probe_reader.cc
+BIN5=probe_reader
+
+
+BIN6_SOURCES=probe_test.cc
+BIN6=probe_test
+
+
+
+
 
 
 include ../make/makefile_rules.mk
