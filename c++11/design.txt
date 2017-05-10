@@ -1,0 +1,16 @@
+allocator
+        has a backing store
+        tracks - homogenous objects ( to start )
+        allocation is via placement new
+        allocator must keep track of rd_ptr, wr_ptr semantics
+                  - rd_ptr being the start of memory
+                  - wr_ptr being the next allocation point
+                  - n objects allocated/used
+
+
+
+
+        questions - does it need any notion of a header
+                  - do we need to do any kind of allignment
+                  - is memory contingous - is this an array
+                  - should we have header automatically
