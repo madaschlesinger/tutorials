@@ -46,8 +46,7 @@ int _file_size()
 {
   streampos begin,end;
 
-
-  ifstream myfile ( traits::default_fname().c_str(), ios::binary);
+  ifstream myfile ( fs_traits::file_name( fs_traits::filename() ).c_str(), ios::binary);
   begin = myfile.tellg();
   myfile.seekg (0, ios::end);
   end = myfile.tellg();
@@ -142,22 +141,56 @@ int _binary_create_backingstore()
 } 
 
 void   _casserts()
-{    
-    shm_traits smt ; 
-    assert( smt.truncate == true );
-    
-    fs_traits_ro fsro ; 
-    assert( fsro.truncate == false );
-    
+{
+          
+  
+  assert( fs_traits::file_open_flags   == O_RDWR  | O_CREAT | O_TRUNC ) ;
+  assert( fs_traits::file_permissions  == S_IRUSR | S_IWUSR | S_IRGRP ) ;
+  assert( fs_traits::is_readonly       == false     ) ;
+  assert( fs_traits::truncate          == true    ) ;
+  assert( fs_traits::mmap_flags        == MAP_SHARED      ) ;
+  assert( fs_traits::mmap_protection   == PROT_WRITE | PROT_READ    ) ;
+
+  assert( fs_traits_ro::file_open_flags  == O_RDONLY  ) ;
+  assert( fs_traits_ro::file_permissions == S_IRUSR | S_IWUSR | S_IRGRP ) ;
+  assert( fs_traits_ro::is_readonly      == true      ) ;
+  assert( fs_traits_ro::truncate         == false     ) ;
+  assert( fs_traits_ro::mmap_flags       == MAP_SHARED      ) ;
+  assert( fs_traits_ro::mmap_protection  == PROT_READ ) ;
+
+  assert( shm_traits::file_open_flags   == O_CREAT | O_RDWR ) ;
+  assert( shm_traits::file_permissions  == S_IRUSR | S_IWUSR | S_IRGRP ) ;
+  assert( shm_traits::is_readonly       == false    ) ;
+  assert( shm_traits::truncate          == true     ) ;
+  assert( shm_traits::mmap_flags        == MAP_SHARED | MAP_LOCKED | MAP_POPULATE     ) ;
+  assert( shm_traits::mmap_protection   == PROT_WRITE | PROT_READ    ) ;
+
+  assert( shm_traits_ro::file_open_flags   == O_RDONLY ) ;
+  assert( shm_traits_ro::file_permissions  == S_IRUSR | S_IWUSR | S_IRGRP ) ;
+  assert( shm_traits_ro::is_readonly       == true   ) ;
+  assert( shm_traits_ro::truncate          == false  ) ;
+  assert( shm_traits_ro::mmap_flags        == MAP_SHARED | MAP_LOCKED | MAP_POPULATE     ) ;
+  assert( shm_traits_ro::mmap_protection   == PROT_READ    ) ;
+
+  shm_traits smt ; 
+  assert( smt.truncate == true );
+  
+  fs_traits_ro fsro ; 
+  assert( fsro.truncate == false );
+  
 }
 
 void _backing_store()
 {
-    _binary_create_backingstore<fs_traits>() ;
-    _binary_read_backingstore<fs_traits_ro>( "fs" ) ;
-    
-    _binary_create_backingstore<shm_traits>() ;
-    _binary_read_backingstore<shm_traits_ro>( "sm" ) ;
+  std::cerr << "fs backing store ***********************" << std::endl;
+  _binary_create_backingstore<fs_traits>() ;
+  _binary_read_backingstore<fs_traits_ro>( "fs" ) ;
+  
+  std::cerr << "shm backing store ***********************" << std::endl;
+  
+  _binary_create_backingstore<shm_traits>() ;
+  std::cerr << "shm ro backing store ***********************" << std::endl;  
+  _binary_read_backingstore<shm_traits_ro>( "sm" ) ;
 }
 
 void _allocator()
@@ -172,7 +205,7 @@ void _allocator()
 
 
     // allocators capacity - should be traits::default_capacity.  the stores capacity includes the header
-    assert( a.capacity() == traits::default_capacity() ) ; 
+    assert( a.capacity() == fs_traits::initial_capacity ) ; 
     
     assert( a.has_spare_capacity( 1    ) == true ) ; 
     assert( a.has_spare_capacity( 1023 ) == true ) ; 
@@ -256,12 +289,12 @@ int main (int argc, char **argv )
         ++argv ;
     }
 
+    _casserts() ;
+    
     if( bs       ) _backing_store() ;
     if( files    ) _files()  ; 
     if( alloc    ) _allocator() ; 
-    if( casserts ) _casserts() ; 
 
-     
      return 0;
 }
 
