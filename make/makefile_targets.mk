@@ -32,7 +32,6 @@ ifndef BIN4_LIBS
 BIN4_LIBS=rt
 endif
 
-
 ifndef BIN5_LIBS
 BIN5_LIBS=rt
 endif
@@ -57,11 +56,28 @@ ifndef BIN9_LIBS
 BIN9_LIBS=rt
 endif
 
-#
-# this needs be generated per BIN
-# needs work for lib dependency
-# also - BIN1_LD_LIB_FLAGS -l in the variable
-#
+# TODO - should this be in rules..... - could not get this working.....
+# ####### begin define_variables ####### 
+# define define_bin_build_targets =
+
+# ifdef BIN$(1)
+# bin_target   = $(BUILD_DIR)/$(BIN$(1))
+# bin_objects  = $(BIN$(1)_OBJECTS)
+# bin_librarys = $(BIN$(1)_LIBRARYS)
+# $(bin_target): $(bin_objects)
+# 	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  -v  $(LDFLAGS) $(BIN$(1)_LD_FLAGS) $(bin_librarys)
+# endif
+
+# endef
+# ####### end define_bin_build_targets #######
+
+# $(foreach _,${n_targets},$(eval $(call define_bin_build_targets,$_)))
+
+
+
+
+
+
 
 ifdef BIN1
 $(BUILD_DIR)/$(BIN1): $(BIN1_OBJECTS)

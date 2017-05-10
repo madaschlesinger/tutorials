@@ -64,11 +64,6 @@ LIBS += $(LIB2)
 endif
 
 
-ifdef LIB2
-LIBS += $(LIB2)
-endif
-
-
 ifdef LIB3
 LIBS += $(LIB3)
 endif
@@ -78,7 +73,25 @@ ifdef LIB4
 LIBS += $(LIB4)
 endif
 
+ifdef LIB5
+LIBS += $(LIB5)
+endif
 
+
+
+# TODO - should this be in rules..... - could not get this working.....
+####### begin collect_libs ####### 
+# define collect_libs =
+
+# ifdef LIB$(1)
+# expand_lib_var     = LIB$(1)
+# LIBS += $(expand_lib_var);
+# endif
+
+# endef
+# ####### end define_bin_build_targets #######
+
+# $(foreach _,${n_targets},$(eval $(call collect_libs,$_)))
 
 #
 # build from SRCS 
