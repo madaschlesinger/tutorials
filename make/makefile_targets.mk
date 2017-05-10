@@ -65,52 +65,51 @@ endif
 
 ifdef BIN1
 $(BUILD_DIR)/$(BIN1): $(BIN1_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ -v -L./lib -L./build -Wl,-rpath=./build:./lib  $(BIN1_LIBRARYS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  $(LDFLAGS) $(BIN1_LD_FLAGS) $(BIN1_LIBRARYS)
 endif
 
 ifdef BIN2
 $(BUILD_DIR)/$(BIN2): $(BIN2_OBJECTS) 
-	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ -v -L./lib -L./build -Wl,-rpath=./build:./lib  $(BIN2_LIBRARYS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  $(LDFLAGS) $(BIN2_LD_FLAGS) $(BIN2_LIBRARYS)
 endif
 
 ifdef BIN3
 $(BUILD_DIR)/$(BIN3): $(BIN3_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ -v -L./lib -L./build -Wl,-rpath=./build:./lib  $(BIN3_LIBRARYS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ $(LDFLAGS)  $(BIN3_LD_FLAGS) $(BIN3_LIBRARYS)
 endif
 
 ifdef BIN4
 $(BUILD_DIR)/$(BIN4): $(BIN4_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ -v -L./lib -L./build -Wl,-rpath=./build:./lib  $(BIN4_LIBRARYS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  $(LDFLAGS)  $(BIN4_LD_FLAGS) $(BIN4_LIBRARYS)
 endif
-
 
 
 ifdef BIN5
 $(BUILD_DIR)/$(BIN5): $(BIN5_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ -v -L./lib -L./build -Wl,-rpath=./build:./lib $(BIN5_LIBRARYS) 
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  $(LDFLAGS) $(BIN5_LD_FLAGS) $(BIN5_LIBRARYS) 
 endif
 
 ifdef BIN6
 $(BUILD_DIR)/$(BIN6): $(BIN6_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -v -lstdc++ $(LDFLAGS)  $(BIN6_LIBRARYS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  $(LDFLAGS)  $(BIN6_LD_FLAGS) $(BIN6_LIBRARYS)
 endif
 
 
 ifdef BIN7
 $(BUILD_DIR)/$(BIN7): $(BIN7_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -v -lstdc++  $(LDFLAGS) $(BIN7_LIBRARYS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -v -lstdc++  $(LDFLAGS) $(BIN7_LD_FLAGS) $(BIN7_LIBRARYS)
 endif
 
 
 ifdef BIN8
 $(BUILD_DIR)/$(BIN8): $(BIN8_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  $(LDFLAGS) -v -L./lib -L./build -Wl,-rpath=./build:./lib  $(BIN8_LIBRARYS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++  $(LDFLAGS)  $(BIN8_LD_FLAGS)  $(BIN8_LIBRARYS)
 endif
 
 
 ifdef BIN9
 $(BUILD_DIR)/$(BIN9): $(BIN9_OBJECTS)
-	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ $(LDFLAGS) -v -L./lib -L./build -Wl,-rpath=./build:./lib  -l$(BIN9_LIBS)
+	$(CC) -o$@  $^ $(CCFLAGS)  -lstdc++ $(LDFLAGS) $(BIN9_LD_FLAGS)  -l$(BIN9_LIBS)
 endif
 
 
