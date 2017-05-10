@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <fcntl.h>
-
+#include <vector>
 #include <unistd.h>
 #include <sys/types.h>
 #include <string>
@@ -29,60 +29,50 @@
 
 
 using namespace std;
+using namespace util;
 
-using util::backing_store::fs_traits;
+using util::memory::allocator ;     
+using util::backing_store::fs_traits_ro;
 using util::probe::stats;
-using util::probe::observation;
-using util::probe::duration;
-using util::probe::occurrence;
 
 int main (int argc, char **argv ) 
 {
-    bool bs       = true ;
-    bool alloc    = true ; 
-    bool casserts = true ; 
-    bool files    = true ; 
+    bool process_files      = false ;
     ++argv;
-    
+
+    vector<string> files;
     while(argc > 0 && *argv )
     {
         string arg =  *argv ;
-        if( arg == "-alloc"   ) bs    = casserts = files = false ; 
-        if( arg == "-bs"      ) alloc = casserts = files = false ; 
-        if( arg == "-files"   ) alloc = casserts = bs    = false ; 
-        if( arg == "-cassert" ) alloc = bs       = files = false ; 
-
+        if( arg == "-files"  ) process_files = true ; 
+        if( arg != "-files" && process_files ) files.push_back( arg ) ; 
+        
         --argc ;
         ++argv ;
     }
 
-     // observation foo( "foo:bar" ) ; 
+    if( files.size() == 0 || process_files == false )
+      {
+        std::cerr << " -files filename[s] required." << std::endl;
+        exit( 1 ) ;
+      }
+    
+    std::string f = files[0] ;
+    
+    util::memory::allocator<stats,fs_traits_ro> l_allocator( f )  ;
+    
+    stats *probe_stats = l_allocator.allocate() ;
 
-     occurrence  goo( "goo:bar" ) ;
+    assert( probe_stats != nullptr ) ; 
+    
+    // need to read header information and get the number of objects
 
-     for( auto i = 0 ; i < 10 ; ++i )  goo.record()  ; 
-
-
-     duration  d( "doo:bar" ) ; 
-
-     std::srand( std::time(0) );
-     for( auto i = 0 ; i < 10 ; ++i )
-     {
-         d.start() ; 
-         
-         uint32_t msec = std::rand() % 10 ; 
-         std::this_thread::sleep_for(std::chrono::milliseconds( msec ));
-         
-         d.end() ; 
-         
-         d.record() ; 
-
-     }        
- 
-     goo.report() ; 
-     d.report() ; 
-
-     return 0;
+    for( auto i = 0 ; i < l_allocator.size()  ; ++i )
+      {
+        probe_stats -> report() ;
+        ++probe_stats ; 
+      }
+    return 0;
 }
 
 
