@@ -48,7 +48,6 @@ BIN6_LIBS=probe config++
 
 BIN7_SOURCES=conf.cc
 BIN7=conf
-#BIN7_LIBS=$(WORKSPACE_DIR)/lib/libconfig++.so
 BIN7_LIBS=config++
 
 
