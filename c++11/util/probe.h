@@ -12,9 +12,12 @@
 #include <string>
 #include <thread>
 #include <mutex>
+#include <vector>
+#include <libconfig.h++>
 
 namespace util { namespace probe {
 
+    
     enum class type : std::int8_t
     {
       VALUE      = 1,
@@ -170,33 +173,79 @@ namespace util { namespace probe {
 
     // these are designed to be singleton...
 
+    // TODO - report destination
+    struct config_entry     
+    {
+      std::string       name       ; 
+      util::probe::type probe_type ;
+      bool              active     ;
+      bool              quiet      ;
+      double            warn       ;
+      double            error      ;
+    };
 
-    class config_entry     ; 
+    using libconfig::Config;
+    using libconfig::Setting;
+    
     class config : public std::map< std::string, config_entry * >
     {
     public:
+      
       typedef std::map<std::string, config_entry*> map;
 
-      static bool initialize()
+      static bool initialize( const char *filenames = nullptr )
       {
         // TOOD read probe configuration - and populate config registry
-        return true ;
+        return config::read_configuration( filenames ) ;
       }
+
+      static bool read_configuration( const char *filenames = nullptr ); 
       
       std::pair<iterator, bool > register_probe_config( const std::string& name, config_entry *pc )
       {
         // thread saftey....
+        //        not really needed - as we want all init to be done on a single thread really
+        //        at startup.  We are not going to use a mutex on read ( at this point )
+        //        read access will occur on seperate threads - only once to intialize active flag
+        //        w/in the probe itself..... - which may be indicated by null stats ptr....
+        
         static std::mutex s_registry_mutex ; 
-        std::lock_guard<std::mutex> guard( s_registry_mutex);
-        return insert( map::value_type( name , pc ) ) ;
+        std::lock_guard<std::mutex> guard( s_registry_mutex );
+
+        iterator iter = singleton<config>::instance().find( name ) ;
+        
+        if( iter == singleton<config>::instance().end() ) return insert( map::value_type( name , pc ) ) ;
+
+        *( iter -> second ) = *pc ; 
+        return std::pair<iterator, bool >( iter, false ) ; // false implies an update, which the caller must then delete pc 
+      }
+
+      config_entry *find_entry( const std::string& name )
+      {
+        iterator iter = singleton<config>::instance().find( name ) ;
+        
+        if( iter == singleton<config>::instance().end() ) return nullptr ; 
+
+        return iter -> second ; 
       }
 
       static bool is_active( const std::string& name )
       {
         // TODO - look up in probe config - and see if the probe is active
 
-        return true ; 
+        iterator iter = singleton<config>::instance().find( name ) ;
+        
+        if( iter != singleton<config>::instance().end() ) return iter -> second -> active ;
+        else                                              return true ; 
+
       }
+    private:
+
+      static bool parse_global_scope_( Setting& scope ) ;
+      static bool parse_probe_config_( Setting& probe ) ;
+      static bool parse_probe_scope_(  Setting& scope ) ;
+      static std::vector<std::string> parse_path_(  const char *dirs  = nullptr );
+      static std::vector<std::string> parse_files_( const std::vector<std::string>& dirs, const char *files = nullptr );
     };
     
 
@@ -230,9 +279,9 @@ namespace util { namespace probe {
         : name_( name )
       {
         // config_entry - for now is null ;
-        cfg_   = nullptr ;
+        cfg_   = util::singleton<config>::instance().find_entry( name ) ;
         stats_ = nullptr ; 
-        if( util::singleton<config>::instance().is_active( name ) )
+        if( cfg_ == nullptr || cfg_ -> active )
           {
             // allocate stats ptr - uses placement new - no ctr is called
             using util::memory::allocator ; 
@@ -262,7 +311,7 @@ namespace util { namespace probe {
       {}
       
       const double&       value()       const { return stats_ -> value_ ; }
-      const uint32_t&     occurrences() const { return stats_ -> n_ ; }
+      const uint32_t&     occurrences() const { return stats_ -> n_     ; }
       const std::string&  name()        const { return name_  ; }
       const stats *       statistics()  const { return stats_ ; }
       
@@ -270,7 +319,7 @@ namespace util { namespace probe {
                 
       virtual void report() const 
       {
-        stats_ -> report() ; 
+        if( stats_ != nullptr ) stats_ -> report() ; 
       }
     } ; 
 
@@ -290,6 +339,8 @@ namespace util { namespace probe {
 
       virtual void record() 
       {
+        if( stats_ == nullptr ) return ;
+        
         // min/max/ min_time / max_time and other stats dont mean much w/an occurence probe
         stats_ -> value_ += 1 ; 
         stats_ -> max_    = stats_ -> value_  ;
@@ -374,6 +425,9 @@ namespace util { namespace probe {
 
       virtual void record() 
       {
+
+        if( stats_ == nullptr ) return ;
+
         if( end_ < start_ ) end_  = clock::now();
         uint32_t usec = std::chrono::duration_cast<std::chrono::microseconds>(end_ - start_).count() ; 
 
