@@ -94,13 +94,31 @@ void _duration_tests()
 
 void _probe_config_tests()
 {
+  using util::probe::config ;
+  using util::probe::config_entry ;
+  using util::singleton ; 
 
-  // TODO - kill fwd declares....
-  bool read_configuration( const char *filename = nullptr ) ;
+  
+  bool result = singleton<config>::instance().initialize( "probe.cfg:probe_test.cfg" ) ; 
 
-  bool result = read_configuration() ;
+  assert( result == true ) ;
+  
+  config::iterator iter = singleton<config>::instance().find( "occurrence:assert:dup:na" ) ;
 
-  assert( result == true ) ; 
+  assert( iter != singleton<config>::instance().end() ) ; 
+  assert( iter -> second -> active == false ) ;
+
+  config_entry *ce = singleton<config>::instance().find_entry( "occurrence:assert:dup:na" ) ;
+  
+  assert( ce == iter -> second ) ; 
+  assert( ce != nullptr  ) ;
+
+  probe::occurrence  p( "occurrence:assert:dup:na" ) ;
+
+  assert( p.statistics() == nullptr ) ;
+
+  p.record() ; // should be safe - even tho not active  
+  
 }
 
 
