@@ -3,7 +3,7 @@
 #include <vector>
 #include <typeinfo>
 #include <functional>
-#include <fibonacci/fibonacci.h>
+#include "fibonacci.h"
 
 using std::function ; 
 

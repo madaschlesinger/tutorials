@@ -1,0 +1,7 @@
+*.tlog
+Debug
+variadic/.vs/variadic/v15/.suo
+*.db
+*.ipch
+*.suo
+*.pyc
