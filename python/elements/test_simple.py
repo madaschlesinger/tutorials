@@ -7,6 +7,9 @@ def tearDownModule() :
 	pass
 
 
+def tf() :
+	return 1
+
 class Simple( unittest.TestCase ) :
 
 
@@ -26,6 +29,10 @@ class Simple( unittest.TestCase ) :
 
 
 	def test_tf(self ) :
+		rc = tf()
 		self.assertTrue( True )
 
 
+if __name__ == '__main__' :
+	unittest.main()
+	pass
