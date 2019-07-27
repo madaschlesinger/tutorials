@@ -68,4 +68,16 @@ def convert_base_limited( x:int, b:int, base:int):
     return rebased
 
 
+def spread_sheet_column_to_int( column:str) -> int :
+    ''' return zero one based column name to column number conversion '''
+    key = '~ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+    result=0
+    for c in column :
+        result = result * 26 + key.index(c)
+
+    return result
+
+
+
 
