@@ -7,10 +7,10 @@ public class CalculateHelper {
     private static final char SUB_SYMBOL = '-';
     private static final char MULT_SYMBOL = '*';
 
-    MathCommand command;
-    double leftVal;
-    double rightVal;
-    double result;
+    private MathCommand command;
+    private double leftVal;
+    private double rightVal;
+    private double result;
 
     public void process( String statement ) throws InvalidStatementException
     {

@@ -2,8 +2,8 @@ package com.pluralsight.calcengine;
 
 public class Adder  extends  CalculateBase {
 
-    Adder() {}
-    Adder( double leftVal, double rightVal){
+    public Adder() {}
+    public Adder(double leftVal, double rightVal){
         super(leftVal, rightVal);
     }
 

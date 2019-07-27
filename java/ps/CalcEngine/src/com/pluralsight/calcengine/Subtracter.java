@@ -2,8 +2,8 @@ package com.pluralsight.calcengine;
 
 public class Subtracter extends CalculateBase {
 
-    Subtracter() {}
-    Subtracter(double leftVal, double rightVal){
+    public Subtracter() {}
+    public Subtracter(double leftVal, double rightVal){
         super(leftVal, rightVal);
     }
 

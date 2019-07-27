@@ -2,8 +2,8 @@ package com.pluralsight.calcengine;
 
 public class Divider extends  CalculateBase{
 
-    Divider() {}
-    Divider(double leftVal, double rightVal){
+    public Divider() {}
+    public Divider(double leftVal, double rightVal){
         super(leftVal, rightVal);
     }
 
