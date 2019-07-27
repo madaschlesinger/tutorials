@@ -9,6 +9,7 @@ public class Divider extends  CalculateBase{
 
     @Override
     public void calculate() {
-        setResult( getLeftVal() / getRightVal() );
+        double r = getLeftVal() / getRightVal();
+        setResult( r );
     }
 }
