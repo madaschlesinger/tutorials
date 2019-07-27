@@ -5,3 +5,5 @@ variadic/.vs/variadic/v15/.suo
 *.ipch
 *.suo
 *.pyc
+out/*
+java/ps/CalcEngine/out/*
