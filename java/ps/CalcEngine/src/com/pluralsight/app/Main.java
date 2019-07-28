@@ -2,7 +2,14 @@
 
 package com.pluralsight.app;
 
-import com.pluralsight.calcengine.*;
+
+import com.pluralsight.calcengine.Adder;
+import com.pluralsight.calcengine.CalculateBase;
+import com.pluralsight.calcengine.CalculateHelper;
+import com.pluralsight.calcengine.Divider;
+import com.pluralsight.calcengine.InvalidStatementException;
+import com.pluralsight.calcengine.Subtracter;
+import com.pluralsight.calcengine.Multiplier;
 
 public class Main {
 

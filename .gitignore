@@ -7,3 +7,9 @@ variadic/.vs/variadic/v15/.suo
 *.pyc
 out/*
 java/ps/CalcEngine/out/*
+*.MF
+java/ps/CalcEngine/.DS_Store
+java/ps/.DS_Store
+java/ps/.DS_Store
+*.DS_Store
+*~
