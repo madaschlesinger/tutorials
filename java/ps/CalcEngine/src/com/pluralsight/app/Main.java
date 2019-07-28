@@ -3,13 +3,7 @@
 package com.pluralsight.app;
 
 
-import com.pluralsight.calcengine.Adder;
-import com.pluralsight.calcengine.CalculateBase;
-import com.pluralsight.calcengine.CalculateHelper;
-import com.pluralsight.calcengine.Divider;
-import com.pluralsight.calcengine.InvalidStatementException;
-import com.pluralsight.calcengine.Subtracter;
-import com.pluralsight.calcengine.Multiplier;
+import com.pluralsight.calcengine.*;
 
 public class Main {
 
@@ -34,10 +28,7 @@ public class Main {
         }
     }
 
-    ;
-
-
-    public static void main(String[] args) {
+    public static void calculate_02() {
 
         String[] statements = {
                 "add 1.0",
@@ -62,5 +53,28 @@ public class Main {
                     System.out.println("    Original exception:" + e.getCause().getMessage());
             }
         }
+
+    }
+
+
+    public static void main(String[] args) {
+
+        String[] statements = {
+                "add 25.0  92.0",
+                "pow 5.0 2.0"
+        };
+
+        // we only have this implemented for Adder
+        DynamicHelper helper = new DynamicHelper(new MathProcessing[] {
+                new Adder(),
+                new PowerOf()
+        });
+
+        for (String statement : statements) {
+            String output = helper.process( statement) ;
+            System.out.println( output );
+
+        }
+
     }
 }
