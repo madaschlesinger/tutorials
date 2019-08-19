@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9c39ac0-6474-4fa4-9ae7-01a45fbcc5ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/binary_tree/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/binary_tree/node.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/binary_tree/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/linked_list.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_linkedlist.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/binary_tree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview_runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/interview_runner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/string_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/string_utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,14 +30,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/binary_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="281">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bits.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="577">
+              <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -63,7 +63,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/binary_tree/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
+            <state relative-caret-position="416">
               <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
@@ -88,7 +88,6 @@
         <option value="$PROJECT_DIR$/test_simple.py" />
         <option value="$PROJECT_DIR$/test_parity.py" />
         <option value="$PROJECT_DIR$/parity.py" />
-        <option value="$PROJECT_DIR$/bits.py" />
         <option value="$PROJECT_DIR$/test_bits.py" />
         <option value="$PROJECT_DIR$/arrays.py" />
         <option value="$PROJECT_DIR$/array_utils.py" />
@@ -103,12 +102,13 @@
         <option value="$PROJECT_DIR$/interview_runner.py" />
         <option value="$PROJECT_DIR$/binary_tree/utils.py" />
         <option value="$PROJECT_DIR$/tests/binary_tree.py" />
+        <option value="$PROJECT_DIR$/bits.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="54" />
-    <option name="y" value="27" />
+    <option name="x" value="132" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="836" />
   </component>
@@ -118,6 +118,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,7 +140,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -234,12 +234,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_bin - 2019.07.18 at 16h 57m 14s.xml">
-      <configuration name="Unittests in bin" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_simple_py - 2019.07.18 at 16h 58m 28s.xml">
-      <configuration name="Unittests in test_simple.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_elements - 2019.07.18 at 17h 02m 21s.xml">
       <configuration name="Unittests in elements" configurationId="tests" />
     </history-entry>
@@ -264,13 +258,18 @@
     <history-entry file="Unittests_in_elements - 2019.07.18 at 17h 14m 46s.xml">
       <configuration name="Unittests in elements" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_elements - 2019.08.10 at 10h 45m 03s.xml">
+      <configuration name="Unittests in elements" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_elements - 2019.08.10 at 10h 45m 28s.xml">
+      <configuration name="Unittests in elements" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="27" width="1440" height="836" extended-state="0" />
-    <editor active="true" />
+    <frame x="132" y="23" width="1440" height="836" extended-state="0" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24242425" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24242425" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3293011" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -318,9 +317,9 @@
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/binary_tree/utils.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="87" />
+          <url>file://$PROJECT_DIR$/bits.py</url>
+          <line>116</line>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -396,13 +395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bits.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="111" column="65" selection-start-line="111" selection-start-column="65" selection-end-line="111" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/contextlib.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -468,22 +460,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_linkedlist.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interview_runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-        </state>
-      </provider>
     </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -492,10 +470,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/binary_tree/utils.py">
+    <entry file="file://$PROJECT_DIR$/test_linkedlist.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -506,13 +484,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/interview_runner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/binary_tree/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/binary_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="281">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bits.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
         </state>
       </provider>
     </entry>
