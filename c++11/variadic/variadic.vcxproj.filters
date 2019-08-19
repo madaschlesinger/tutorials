@@ -15,8 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\variadic.cc">
+    <ClCompile Include="variadic.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cherry_pick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tuple_size.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="printer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="factorial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fibonacci.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gcd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sfinae.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

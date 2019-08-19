@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="variadic.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cherry_pick.h" />
+    <ClInclude Include="factorial.h" />
+    <ClInclude Include="fibonacci.h" />
+    <ClInclude Include="gcd.h" />
+    <ClInclude Include="printer.h" />
+    <ClInclude Include="sfinae.h" />
+    <ClInclude Include="tuple_size.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{5F079907-B836-4931-9342-64C7BB1446BC}</ProjectGuid>
@@ -138,9 +150,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\variadic.cc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
