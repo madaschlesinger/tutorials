@@ -15,7 +15,7 @@ T adder(T value)
 template< typename T, typename... Values>
 T adder(T value, Values... vals)
 {
-	std::cerr << __FUNCSIG__ << std::endl;
+	//std::cerr << __FUNCSIG__ << std::endl;
 	return value + adder(vals...);
 }
 
@@ -23,7 +23,7 @@ T adder(T value, Values... vals)
 
 void _adder()
 {
-	int i = adder(1, 2, 3, 10);
+	// int i = adder(1, 2, 3, 10);
 	assert(adder(1, 2, 3, 10) == 16);
 }
 

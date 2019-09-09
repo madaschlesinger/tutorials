@@ -1,5 +1,6 @@
-#pragma once;
+#pragma once
 #include <iostream>
+#include <type_traits>
 
 
 namespace detail
@@ -8,7 +9,10 @@ namespace detail
 	struct C
 	{
 		void f(T const & t) { std::cerr << "f(ref)" << std::endl; }
-		void f(T&& t) { std::cerr << "f(mv)" << std::endl; }
+        
+        template< typename T_=T, typename std::enable_if_t< std::is_reference<T_>::value>* NotUsed=nullptr >
+		void f(T_&& t)
+        { std::cerr << "f(mv)" << std::endl; }
 	};
 };
 
@@ -21,10 +25,14 @@ void _sfinae()
 	C<int> c;
 	C<int&> cc;
 
-	int a;
+	int a=10,b=100;
+    int && rvalref = std::move( b );
 	c.f(a);
-	cc.f(static_cast<int&>(a)); // will cause compiler error w/o enable_if
-
+	c.f(rvalref); // will cause compiler error w/o enable_ifcc.f(static_cast<int&>(a)); // will cause compiler error w/o enable_if
+    cc.f(a); // will cause compiler error w/o enable_ifcc.f(static_cast<int&>(a)); // will cause compiler error w/o enable_if
+    
+    c.f(std::move( a ));       // creates rvalue reference
+    //cc.f(std::move( a ) );    // creates rvalue reference -> compile error, b/c T is a reference - the function is sfinae'd away
 	//static_assert(gcd<105,30>::value == 15, "must be 15");
 }
 

@@ -1,4 +1,4 @@
-#pragma once;
+#pragma once
 #include <iostream>
 
 
@@ -16,34 +16,15 @@ struct TupleSize ;
 template<typename Head, typename... Tail> // standard, traverse types
 struct TupleSize<Head,Tail...>
 {
-  static const size_t value = sizeof(Head) + TupleSize<Tail...>::value ; 
+  static constexpr size_t value = sizeof(Head) + TupleSize<Tail...>::value ;
 };
 
 
 template<> struct TupleSize<> // ends recursion, with zero parameters
 {
-	static const size_t value = 0;
+	static constexpr size_t value = 0;
 };
 
-
-
-
-
-template <typename... Tail>
-struct TSize;
-
-template<typename Head, typename... Tail>
-struct TSize<Head,Tail...>
-{
-	static const size_t value = sizeof(Head) + TSize<Tail...>::value;
-};
-
-
-template<>
-struct TSize<>
-{
-	static const size_t value = 0;
-};
 
 
 namespace detail
