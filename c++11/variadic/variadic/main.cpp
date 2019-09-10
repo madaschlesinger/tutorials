@@ -29,14 +29,15 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World!\n";
+    // std::cout << "Hello, World!\n";
     
     // codility::brackets::solution();
     // codility::fish::solution();
-//    codility::oldmission::solution();
-     _vector();
-    
+    // codility::prime::solution();
+    // codility::psuedo_prime::solution();
+    codility::nesting::solution();
 #if 0
+    _vector();
     _initializer_list();
     _sfinae();
     _gcd();
