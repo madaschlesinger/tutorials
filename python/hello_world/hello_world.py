@@ -1,16 +1,12 @@
 
-''' i would need to get the pytest stuff going...
+'''
 
-to get it going - you need homebrew to start.  brew
-is an essential tool.  Read on how to install homebrew on your mac
+Tests - note the test dir.  There are two basics test frameworks for python
+unittest - and pytest.  I used unittest here b/c it worked out of the box.
 
-then i just ran
+On the upper right ( in my cfg ) - in the menu bar you can see a drop down for
+configurations.  There are two defined - UnitTest in test_foo.py - and hello_world.
 
-brew install pytest -
-
-I will get modules / testing going later
-
-from here however, you can learn to run a simlple program
 
 note the 'hello_world' in the configuration - upper right on menu bar
 the triangle to the left - is to run the program ( here there is only one )

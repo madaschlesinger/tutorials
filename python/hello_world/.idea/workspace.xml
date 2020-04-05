@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcdc5cf5-f6b1-4517-b255-42d2c31668e9" name="Default Changelist" comment="" />
+    <list default="true" id="dcdc5cf5-f6b1-4517-b255-42d2c31668e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/test_foo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello_world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello_world/.idea/hello_world.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello_world/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello_world/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello_world/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello_world/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello_world/hello_world.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw/foo.py" beforeDir="false" afterPath="$PROJECT_DIR$/hw/foo.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +24,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hello_world.py">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_foo.py">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+              <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/loader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="160" column="78" lean-forward="true" selection-start-line="160" selection-start-column="78" selection-end-line="160" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -27,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hw/foo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -39,6 +71,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -49,13 +82,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/hw/foo.py" />
+        <option value="$PROJECT_DIR$/test/test_foo.py" />
         <option value="$PROJECT_DIR$/hello_world.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="66" />
-    <option name="y" value="29" />
+    <option name="y" value="39" />
     <option name="width" value="1361" />
     <option name="height" value="758" />
   </component>
@@ -78,6 +111,11 @@
               <item name="hello_world" type="462c0819:PsiDirectoryNode" />
               <item name="hw" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="hello_world" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hello_world" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -87,7 +125,15 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="hello_world" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="hello_world" />
+      </console-settings>
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -101,7 +147,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Unittests in test_foo.py">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="hello_world" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -127,6 +173,9 @@
       <module name="hello_world" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -141,6 +190,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in test_foo.py" type="tests" factoryName="Unittests" nameIsGenerated="true">
+      <module name="hello_world" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_pattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_foo.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.hello_world" />
+      <item itemvalue="Python tests.Unittests in test_foo.py" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -155,40 +223,82 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="pytest_in_test - 2020.04.05 at 17h 44m 24s.xml">
+      <configuration name="pytest in test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 44m 54s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 45m 33s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 45m 57s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 46m 52s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 46m 56s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 47m 12s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 47m 59s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 48m 11s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_foo_py - 2020.04.05 at 17h 48m 28s.xml">
+      <configuration name="Unittests in test_foo.py" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="29" width="1361" height="758" extended-state="0" />
+    <frame x="0" y="39" width="1361" height="758" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23432836" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23432836" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32882884" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3993994" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977612" visible="true" weight="0.32882884" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49850747" weight="0.3993994" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32882884" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4977612" weight="0.32882884" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5022388" side_tool="true" visible="true" weight="0.32882884" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32882884" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../../.." />
+    </ignored-roots>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/hello_world.py</url>
-          <line>33</line>
+          <line>29</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/hello_world.py</url>
-          <line>26</line>
+          <line>22</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/test_foo.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -197,17 +307,34 @@
     <entry file="file://$PROJECT_DIR$/hw/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="160" column="78" lean-forward="true" selection-start-line="160" selection-start-column="78" selection-end-line="160" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_foo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hw/foo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hello_world.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
