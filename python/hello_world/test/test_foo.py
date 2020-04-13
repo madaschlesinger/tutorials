@@ -23,12 +23,12 @@ class HwFooTests(unittest.TestCase):
     def test_hw_string_letter_count(self):
         str="hello world, its a crazy world right now"
 
-        numchar = 0
+        num = 0
         for char in str:
-            numchar += 1
+            num += 1
 
-        self.assertEqual(numchar, 40)
-
+        self.assertEqual(num, len(str))
+        self.assertEqual(num, 40)
 
 
 
