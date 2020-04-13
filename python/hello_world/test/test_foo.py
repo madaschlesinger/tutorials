@@ -18,5 +18,21 @@ class HwFooTests(unittest.TestCase):
         self.assertEqual(foo.cube(3), 27 )
         self.assertEqual(foo.cube(2), 8 )
 
+
+
+    def test_hw_string_letter_count(self):
+        str="hello world, its a crazy world right now"
+
+        numchar = 0
+        for char in str:
+            numchar += 1
+
+        self.assertEqual(numchar, 40)
+
+
+
+
+
+
 if __name__ == '__main__':
     unittest.main()
